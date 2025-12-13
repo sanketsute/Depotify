@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Products" %>
-<div class="flex flex-row justify-between w-full my-5"><h1 class="pt-1 font-bold text-3xl" >Products</h1>
-<%= link_to "New product", new_product_path, class: "rounded bg-blue-500 d-block text-white py-3 px-5" %>
+<div class="flex flex-row justify-between w-full my-5 px-5">
+  <h1 class="pt-1 font-bold text-3xl" >Products</h1>
+  <%= link_to "New product", new_product_path, class: "rounded bg-blue-500 d-block text-white py-3 px-5" %>
 </div>
-
 
 <div id="products" class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 lg:gap-5 md:gap-4 gap-3 w-full mx-auto px-5">
   <% @products.each do |product| %>
