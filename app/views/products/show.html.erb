@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product %>
+
+<div class="flex flex-row gap-2">
+  <%= link_to "Edit this product", edit_product_path(@product),  class: "rounded bg-blue-500 mt-5 d-block text-white py-2 px-5" %> 
+  <%= link_to "Back to products", products_path, class: "rounded bg-gray-100 border mt-5 d-block text-black py-2 px-5" %>
+</div>
+<div>
+  <%= button_to "Destroy this product", @product, method: :delete,class: "rounded bg-red-500 border mt-5 d-block text-white py-2 px-5" %>
+</div>

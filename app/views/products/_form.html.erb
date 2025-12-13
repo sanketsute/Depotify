@@ -1,0 +1,40 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class:"block shadow rounded-sm border-1 py-1 px-2 w-md" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :description, style: "display: block" %>
+    <%= form.textarea :description, rows: 10, class:"block shadow rounded-sm border-1 py-1 px-2 w-md"%>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :image_url, style: "display: block" %>
+    <%= form.text_field :image_url, class:"block shadow rounded-sm border-1 py-1 px-2 w-md" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price,type: "number", class:"block shadow rounded-sm border-1 py-1 px-2 w-md" %>
+  </div>
+
+  <div class="inline-block w-auto">
+    <%= form.submit class: "rounded bg-blue-500 mt-5 d-block text-white py-3 px-5"%>
+  </div>
+  <div class="inline-block">
+  <%= link_to "Back to products", products_path, class: "rounded bg-gray-100 border mt-5 d-block text-black py-3 px-5"%>
+</div>
+<% end %>

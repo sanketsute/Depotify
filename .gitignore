@@ -1,0 +1,35 @@
+# See https://help.github.com/articles/ignoring-files
+
+# Ignore bundler config
+/.bundle
+
+# Ignore environment files (except templates)
+/.env*
+!/.env*.erb
+
+# Ignore logs and temp files
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep directory
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore storage (uploads, sqlite)
+/storage/*
+!/storage/.keep
+
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Ignore compiled assets
+/public/assets
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# Ignore Rails credentials master key
+/config/master.key
