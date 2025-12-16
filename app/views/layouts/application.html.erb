@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Depotify" %></title>
+    <title> "The Pragmatic Collection"</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,12 +22,46 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="w-full flex flex-col bg-[#F2F0EF]">      
-    <ul class="flex bg-blue-800 py-3 pl-5">
-        <li class="text-white text-2xl">Depotify</li>
-      </ul>
-    <main class="container bg-[#F2F0EF] mx-auto sm:px-3 pb-5">
-         <%= yield %> 
-    </main>
+  <body class="w-full flex flex-row bg-[#F2F0EF]">      
+    <ul class="min-w-[160px] bg-[#2C4A3B] flex flex-col text-white shadow-lg overflow-hidden h-100vh z-10">
+      <li class="h-16 flex items-center px-6 border-b border-white/10">
+            <h1 class="text-xl font-semibold tracking-wide">Pragmatic</h1>
+      </li>
+
+      <li class="hover:bg-[#3E6351] mt-10">
+        <%= link_to "Home", store_index_path, class: "flex items-center px-4 py-2.5 bg-white/10 text-white rounded-md transition-colors" %>
+      </li>
+      <li>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-300 hover:bg-white/5 hover:text-white rounded-md transition-colors">
+                <span class="text-sm font-medium">Questions</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-300 hover:bg-white/5 hover:text-white rounded-md transition-colors">
+            <span class="text-sm font-medium">News</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-300 hover:bg-white/5 hover:text-white rounded-md transition-colors">
+            <span class="text-sm font-medium">Contact</span>
+        </a>
+      </li>
+    </ul>
+    <div class="flex flex-col flex-1">
+      <header class="bg-white shadow-md w-full h-16 content-center">
+        <div class="container w-full px-5 py-4 flex justify-end items-center">
+          <nav>
+            <ul class="flex space-x-4">
+              <li><a href="#" class="text-gray-700 hover:text-gray-900">Login</a></li>
+              <li><a href="#" class="text-gray-700 hover:text-gray-900">Register</a></li>
+              <li><a href="#" class="text-gray-700 hover:text-gray-900">Cart (0)</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main class="w-full bg-[#F2F0EF] mx-auto px-3  md:px-5 pb-5">
+          <%= yield %> 
+      </main>
+    </div>
   </body>
 </html>

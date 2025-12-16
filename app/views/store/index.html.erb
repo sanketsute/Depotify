@@ -2,19 +2,22 @@
   <% if notice.present? %>
     <p id="notice" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-5" id="notice"><%= notice %></p>
   <% end %>
-  <h1 class="font-bold text-2xl mx-5 mb-6 pb-2 my-5">The Pragmatic Collection</h1>
-  <% @products.each do |product| %>
-    <div class="w-full p-5 shadow-md hover:shadow-lg bg-white rounded-lg flex flex-col md:flex-row mb-10 mx-5 ">
-      <%= image_tag(product.image_url, class: "m-auto object-contain max-h-300 max-w-500") %>
-      <div class="mt-5 md:ml-8 flex flex-col border-t pt-5 md:pt-0 md:border-t-0 md:mt-0 border-gray-300">
-        <h2 class="font-semibold text-xl mb-3"><%= product.title %></h2>
-        <p class="mb-3"><%= sanitize(product.description)  %></p>
-        <div class="flex justify-between items-center mt-5">
-          <p class="font-bold mb-3"><%= number_to_currency(product.price) %></p>
-          <%= button_to 'Add to Cart' %>
-        </div>
-      </div>         
-    </div>
+  <h1 class="font-bold text-2xl mb-6 pb-2 my-5">The Pragmatic Collection</h1>
+  <% cache @products do %>
+    <% @products.each do |product| %>
+      <% cache product do %>
+          <div class="w-full p-5 shadow-md hover:shadow-lg bg-white rounded-lg flex flex-col md:flex-row mb-10 px-5 mx-auto ">
+            <%= image_tag(product.image_url, class: "m-auto object-contain max-h-300 max-w-500") %>
+            <div class="mt-5 md:ml-8 flex flex-col border-t pt-5 md:pt-0 md:border-t-0 md:mt-0 border-gray-300 mx-5">
+              <h2 class="font-semibold text-xl mb-3"><%= product.title %></h2>
+              <p class="mb-3"><%= sanitize(product.description)  %></p>
+              <div class="flex justify-between items-center mt-5">
+                <p class="font-bold"><%= number_to_currency(product.price) %></p>
+                <%= button_to 'Add to Cart' %>
+              </div>
+            </div>         
+          </div> 
+        <% end %>
+    <% end %>
   <% end %>
-
 </div>
