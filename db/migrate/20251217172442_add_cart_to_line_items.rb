@@ -1,0 +1,5 @@
+class AddCartToLineItems < ActiveRecord::Migration[8.0]
+  def change
+    add_reference :line_items, :cart, null: false, foreign_key: true
+  end
+end
