@@ -22,7 +22,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="w-full flex flex-row bg-[#F2F0EF]">      
+  <body class="w-full flex flex-row bg-[#F2F0EF] min-h-screen h-full">      
     <ul class="w-[160px] bg-[#2C4A3B] flex flex-col text-white shadow-lg overflow-hidden h-100vh z-10">
       <li class="h-16 flex items-center px-6 border-b border-white/10 fixed top-0 bg-[#2C4A3B] z-10 w-[160px]">
             <h1 class="text-xl font-semibold tracking-wide">Pragmatic</h1>
@@ -47,7 +47,7 @@
         </a>
       </li>
     </ul>
-    <div class="flex flex-col flex-1 ">
+    <div class="flex flex-col flex-1 min-h-screen">
       <header class="bg-white shadow-md h-16 content-center fixed top-0 z-10 w-[calc(100%-160px)]">
         <div class="w-full px-5 py-4 flex justify-end items-center">
           <nav>
@@ -59,7 +59,7 @@
           </nav>
         </div>
       </header>
-      <main class="w-full bg-[#F2F0EF] mx-auto px-3  md:px-5 pb-5 mt-20">
+      <main class="w-full bg-[#F2F0EF] mx-auto px-3  md:px-5 pb-5 mt-20 h-full">
           <%= yield %> 
       </main>
     </div>
