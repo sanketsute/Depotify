@@ -1,17 +1,51 @@
 <div id="<%= dom_id cart %>" class="w-full my-5 space-y-5">
     <% if cart.line_items.any? %>
-        <% cart.line_items.each do |line_item| %>
-        <div class="bg-white p-5 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start">
-            <div class="flex-1">
-                <h2 class="font-semibold text-xl mb-2"><%= line_item.product.title %></h2>
-                <p class="font-bold mb-2"><%= number_to_currency(line_item.product.price) %></p>
-                <p class="mb-2">Quantity: <%= line_item.quantity %></p>
-            </div>
-            <div class="mt-4 md:mt-0 md:ml-6">
-            <%= button_to 'Remove', line_item_path(line_item), method: :delete, form_class: "inline", class: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
-            </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">   
+        <div class="lg:col-span-2 space-y-4">
+            <% cart.line_items.each do |line_item| %>
+              <div class="bg-white p-5 rounded-lg shadow-md flex flex-col items-start md:items-start">
+                    <h2 class="font-semibold text-xl mb-2"><%= line_item.product.title %></h2>
+                    <p class="font-bold mb-2"><%= number_to_currency(line_item.product.price) %></p>
+                  <div class="mt-4 flex items-center gap-4">
+                    <div class="flex items-center border border-gray-300 rounded overflow-hidden">
+                      <span class="bg-gray-50 px-3 py-1 text-gray-600 text-sm border-r">Quantity:</span>
+                      <input type="text" value="<%= line_item.quantity %>" class="w-12 text-center py-1" readonly>
+                      <%= button_to "+", line_item_path({id:line_item.id, line_item: {quantity:line_item.quantity+1}}), method: :patch, class: "bg-gray-100 px-3 py-1 border-l text-gray-600 cursor-pointer" %>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <%= button_to "Remove", line_item_path(line_item), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline" %>
+                  </div>
+              </div>
+            <% end %>
         </div>
-        <% end %>
+        <div class="lg:col-span-1">
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 sticky top-4">
+        <h3 class="text-lg font-bold mb-4 border-b pb-2">Order Summary</h3>       
+        <div class="flex justify-between mb-2 text-gray-600">
+          <span>Subtotal (<%= cart.line_items.sum(:quantity) %> items):</span>
+          <span><%= number_to_currency(cart.total_price) %></span>
+        </div>     
+        <div class="flex justify-between mb-4 text-gray-600">
+          <span>Tax:</span>
+          <span>$0.00</span>
+        </div>
+        
+        <div class="flex justify-between mb-6 text-xl font-bold text-gray-900 border-t pt-2">
+          <span>Total:</span>
+          <span><%= number_to_currency(cart.total_price) %></span>
+        </div>
+
+        <button class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-3 px-4 rounded shadow transition duration-200">
+          Proceed to Checkout
+        </button>
+        
+        <div class="mt-4">
+           <%= button_to 'Empty Cart', cart_path(cart), method: :delete, class: "w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-50 font-medium" %>
+        </div>
+      </div>
+    </div>
+      </div>
     <% else %>
         <p class="text-gray-600">Your cart is empty.</p>
     <% end %>
