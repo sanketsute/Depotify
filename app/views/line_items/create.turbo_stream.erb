@@ -1,0 +1,14 @@
+<%= turbo_stream.update "cart-count" do %>
+  <% if @cart.line_items.any? %>
+    <span>(<%= @cart.total_items %>)</span>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "notice" do %>
+   <%= render partial: "store/notice", locals: { notice: "Added to cart!" } %>
+<% end %>
+
+<%= turbo_stream.replace "cart_modal_content" do %>
+  <%= turbo_frame_tag "cart_modal_content", src: cart_modal_path, loading: :lazy %>
+<% end %>
+

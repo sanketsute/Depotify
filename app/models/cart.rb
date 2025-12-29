@@ -6,6 +6,10 @@ class Cart < ApplicationRecord
     line_items.sum { |item| item.total_price }
   end
 
+  def total_items
+    line_items.sum(:quantity)
+  end
+
 
   def add_product(product_id)
     current_item = line_items.find_by(product_id: product_id)

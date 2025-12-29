@@ -54,7 +54,22 @@
             <ul class="flex space-x-4">
               <li><a href="#" class="text-gray-700 hover:text-gray-900">Login</a></li>
               <li><a href="#" class="text-gray-700 hover:text-gray-900">Register</a></li>
-              <li><a href="#" class="text-gray-700 hover:text-gray-900">Cart (0)</a></li>
+              <li>
+                  <% if @cart&.persisted? %>
+                   <a data-controller="slideover-trigger"
+                      data-slideover-trigger-slideover-outlet="#cart-modal" 
+                      data-action="click->slideover-trigger#open" >
+                      <span>Cart</span>
+                        <span id="cart-count">
+                          <% if @cart && @cart.line_items.any? %>
+                            <span>(<%= @cart.total_items %>)</span>
+                          <% else %>
+                            <span>(0)</span>
+                          <% end %>
+                        </span>
+                    </a>
+                  <% end %>
+              </li>
             </ul>
           </nav>
         </div>
@@ -63,5 +78,28 @@
           <%= yield %> 
       </main>
     </div>
+  <div id="cart-modal" data-controller="slideover" data-slideover-target="container" class="relative z-100 hidden" >
+    
+    <div 
+      data-slideover-target="backdrop" 
+      data-action="click->slideover#close"
+      class="fixed inset-0 bg-gray-900/75 bg-opacity-75 transition-opacity duration-500 ease-in-out opacity-0"
+    ></div>
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div data-slideover-target="panel" class="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out translate-x-full sm:duration-700">
+                    <%= turbo_frame_tag "cart_modal_content", src: cart_modal_path, loading: :lazy do %>
+                        <div class="flex h-full flex-col bg-gray-900 p-6 text-white shadow-xl">
+                            Loading...
+                        </div>
+                    <% end %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
   </body>
 </html>

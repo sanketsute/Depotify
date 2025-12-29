@@ -29,7 +29,8 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_product(product.id)
     respond_to do |format|
       if @line_item.save
-      format.html { redirect_to @line_item.cart }
+        format.html { redirect_to store_index_url, notice: "Line item was successfully created." }
+        format.turbo_stream
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,8 +41,11 @@ class LineItemsController < ApplicationController
 
   # PATCH/PUT /line_items/1 or /line_items/1.json
   def update
-    respond_to do |format|  
+    respond_to do |format|
       if @line_item.update(line_item_params)
+        if params[:turbo_stream] == "true"
+          format.turbo_stream
+        end
         format.html { redirect_to @line_item.cart, notice: "Line item was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @line_item }
       else
@@ -54,8 +58,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1 or /line_items/1.json
   def destroy
     @line_item.destroy!
-
     respond_to do |format|
+        if params[:turbo_stream] == "true"
+          format.turbo_stream
+        end
       format.html { redirect_to @line_item.cart, notice: "Line item was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end

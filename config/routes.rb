@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :carts
 
   root "store#index", as: "store_index"
+  get "cart/modal", to: "carts#modal", as: :cart_modal
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
