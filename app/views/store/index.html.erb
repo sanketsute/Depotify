@@ -1,20 +1,11 @@
 <div class="w-full">
   <%= render 'notice' %>
   <h1 class="font-bold text-2xl mb-6 pb-2 my-5">The Pragmatic Collection</h1>
+  <%= turbo_stream_from "products" %>
   <% cache @products do %>
     <% @products.each do |product| %>
       <% cache product do %>
-          <div class="w-full p-5 shadow-md hover:shadow-lg bg-white rounded-lg flex flex-col md:flex-row mb-10 px-5 mx-auto ">
-            <%= image_tag(product.image_url, class: "m-auto object-contain max-h-300 max-w-500") %>
-            <div class="mt-5 md:ml-8 flex flex-col border-t pt-5 md:pt-0 md:border-t-0 md:mt-0 border-gray-300 mx-5">
-              <h2 class="font-semibold text-xl mb-3"><%= product.title %></h2>
-              <p class="mb-3"><%= sanitize(product.description)  %></p>
-              <div class="flex justify-between items-center mt-5">
-                <p class="font-bold"><%= number_to_currency(product.price) %></p>
-                <%= button_to 'Add to Cart', line_items_path(product_id: product.id), form_class: "inline", class: "bg-[#2C4A3B] hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
-              </div>
-            </div>         
-          </div> 
+          <%= render "product", product: product %>
         <% end %>
     <% end %>
   <% end %>
