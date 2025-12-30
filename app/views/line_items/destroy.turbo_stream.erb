@@ -1,13 +1,1 @@
-
-<% @cart = @line_item.cart %>
-<%= turbo_stream.update "cart-count" do %>
-  <% if @cart.line_items.any? %>
-    <span>(<%= @cart.total_items %>)</span>
-  <% end %>
-<% end %>
-<%= turbo_stream.replace "cart_modal_content" do %>
-  <%= render template: "carts/modal", layout: false %>
-<% end %>
-<%= turbo_stream.update "notice" do %>
-   <%= render partial: "store/notice"%>
-<% end %>
+<%= render "refresh_cart" %>
