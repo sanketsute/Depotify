@@ -9,7 +9,7 @@ static targets = ["backdrop", "panel", "container"]
 
   open() {
     let pathname = window.location.pathname 
-    if(pathname.includes("/carts/")) {
+    if(["/carts/show", "/orders/new"].includes(pathname)) {
       return;
     }
     this.containerTarget.classList.remove("hidden")

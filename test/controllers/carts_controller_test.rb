@@ -23,7 +23,15 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to cart_url(Cart.last)
   end
 
-  test "should show cart" do
+  test "should redirect to store index" do
+    get cart_url(@cart)
+    assert_response :redirect
+    assert_redirected_to store_index_url
+  end
+
+   test "should show cart" do
+    post line_items_url(product_id: products(:one).id)
+    @cart = Cart.find(session[:cart_id])
     get cart_url(@cart)
     assert_response :success
   end
@@ -47,5 +55,13 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to store_index_url
+  end
+
+  test "should_have_unique_products_in_cart" do
+    post line_items_url, params: { product_id: products(:one).id }
+    post line_items_url, params: { product_id: products(:one).id }
+    @cart = Cart.find(session[:cart_id])
+    assert_equal 1, @cart.line_items.count
+    assert_equal 2, @cart.line_items.first.quantity
   end
 end

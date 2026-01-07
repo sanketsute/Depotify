@@ -55,7 +55,7 @@
       <p class="mt-0.5 text-sm text-gray-400">Shipping and taxes calculated at checkout.</p>
       <% if @cart.present? %>
         <div class="mt-6">
-          <%= link_to 'Show Cart', cart_path(@cart), data: { turbo_frame: "_top" }, class: "flex items-center justify-center rounded-md border border-transparent bg-white px-6 py-3 text-base font-medium text-gray-900 shadow-sm hover:bg-gray-100" %>
+          <%= link_to 'Proceed to Checkout', new_order_path, data: { turbo_frame: "_top" }, class: "flex items-center justify-center rounded-md border border-transparent bg-white px-6 py-3 text-base font-medium text-gray-900 shadow-sm hover:bg-gray-100" %>
         </div>
       <% end %>
       <div class="mt-6 flex justify-center text-center text-sm text-gray-400">

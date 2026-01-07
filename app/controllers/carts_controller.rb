@@ -9,6 +9,11 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+      if session[:cart_id] == @cart.id 
+        @cart = @cart
+      else
+        redirect_to store_index_url, notice: "Invalid Cart"
+      end
   end
 
   # GET /carts/new

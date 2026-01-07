@@ -31,5 +31,6 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     delete line_item_url(@line_item), params: { turbo_stream: "true" }, as: :turbo_stream
     assert_response :success
   end
+  
 
 end

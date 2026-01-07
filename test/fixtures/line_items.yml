@@ -4,3 +4,5 @@
 one:
   product: two
   cart: two
+  quantity: 3
+  price: 9.99
