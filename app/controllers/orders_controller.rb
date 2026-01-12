@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.expect(order: [ :name, :address, :email, :pay_type ])
+      params.expect(order: [ :name, :address, :email, :pay_type_id ])
     end
 
     def ensure_cart_is_not_empty

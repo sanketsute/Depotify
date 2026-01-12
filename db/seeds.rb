@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+["Check", "Credit card", "Purchase order"].each do |pay_type_name|
+  PayType.find_or_create_by!(
+    name: pay_type_name,
+    code: pay_type_name.parameterize.underscore
+  )
+end
