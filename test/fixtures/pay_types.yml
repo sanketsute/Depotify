@@ -1,0 +1,9 @@
+check:
+  name: Check
+  code: check
+credit_card:
+  name: Credit card
+  code: credit_card
+purchase_order:
+  name: Purchase order
+  code: purchase_order
