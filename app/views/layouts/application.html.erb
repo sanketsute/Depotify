@@ -56,7 +56,7 @@
               <li><a href="#" class="text-gray-700 hover:text-gray-900">Register</a></li>
               <li>
                   <% if @cart&.persisted? %>
-                   <a data-controller="slideover-trigger"
+                   <a id="cart-link" data-controller="slideover-trigger"
                       data-slideover-trigger-slideover-outlet="#cart-modal" 
                       data-action="click->slideover-trigger#open" >
                       <span>Cart</span>

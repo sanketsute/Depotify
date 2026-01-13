@@ -28,11 +28,9 @@
   <div class="my-5" data-controller="payment">
      <%= form.label :pay_type_id, "Payment Method" %>
       <%= form.select :pay_type_id, PayType.all.map { |pt| [pt.name, pt.id] }, {prompt: "Select Payment Method"}, 'data-payment-target'=> "selection", 'data-action'=> "payment#showAdditionalFields", class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:pay_type_id].none?, "border-red-400 focus:outline-red-600": order.errors[:pay_type_id].any?}] %>
-<% PayType.all.each do |pay_type| %>
-
-
-   <%= render partial: "#{pay_type.code}", locals: { form: form, pay_type: pay_type } %>
-<% end %>
+    <% PayType.all.each do |pay_type| %>
+      <%= render partial: "#{pay_type.code}", locals: { form: form, pay_type: pay_type } %>
+    <% end %>
   </div>
 
   <div class="inline">
