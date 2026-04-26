@@ -1,0 +1,18 @@
+<p>Hi <%= @order.name %>,</p>
+
+<p>Thank you for your order. We have received your request and your order is currently being processed. Below are the details of your purchase:</p>
+
+<ul>
+  <% @order.line_items.each do |item| %>
+    <li><%= item.quantity %> x <%= truncate(item.product.title, length: 50) %> — <%= number_to_currency(item.product.price) %> each</li>
+  <% end %>
+</ul>
+
+<p><strong>Total:</strong> <%= number_to_currency(@order.total_price) %></p>
+
+<p>We will notify you by email as soon as your order has shipped. If you have any questions, please reply to this message or contact our support team.</p>
+
+<p>Thank you for choosing Depotify.</p>
+
+<p>Sincerely,<br>
+The Depotify Team</p>

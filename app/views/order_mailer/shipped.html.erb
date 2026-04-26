@@ -1,0 +1,7 @@
+Hi <%= @order.name %>,
+<p>We are pleased to inform you that your order has been shipped. Below are the details of your purchase:</p>
+<ul>
+  <% @order.line_items.each do |item| %>
+    <li><%= item.quantity %> x <%= truncate(item.product.title, length: 50) %> — <%= number_to_currency(item.product.price) %> each</li>
+  <% end %>
+</ul>
