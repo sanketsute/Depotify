@@ -1,0 +1,68 @@
+
+
+<div class="min-h-screen flex items-start justify-center bg-gray-50 py-12 px-4">
+	<div class="w-full max-w-3xl">
+		<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+			<div class="p-6 md:p-8">
+				<div class="flex items-center gap-4 mb-6">
+					<div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+						<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9a3 3 0 11-6 0 3 3 0 016 0zM6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+					</div>
+					<div>
+						<h3 class="text-2xl font-extrabold text-gray-900">New user</h3>
+						<p class="text-sm text-gray-500">Create a new user account</p>
+					</div>
+				</div>
+
+				<% if notice.present? %>
+					<p class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded mb-6" role="alert"><%= notice %></p>
+				<% end %>
+
+				<%= form_with(model: @user, url: register_create_path, local: true, class: "space-y-6") do |form| %>
+					<div>
+						<%= form.label :name, 'Name', class: "block text-sm font-medium text-gray-700 mb-2" %>
+						<div class="relative">
+							<%= form.text_field :name, placeholder: 'Enter full name', class: "block w-full rounded-lg border border-gray-200 bg-white py-3 pl-10 pr-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-300" %>
+							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-500">
+								<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11c1.657 0 3-1.567 3-3.5S17.657 4 16 4s-3 1.567-3 3.5S14.343 11 16 11zM4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1"/></svg>
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<%= form.label :password, 'Password', class: "block text-sm font-medium text-gray-700 mb-2" %>
+						<div class="relative">
+							<%= form.password_field :password, placeholder: 'Enter password', class: "block w-full rounded-lg border border-gray-200 bg-white py-3 pl-10 pr-12 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-300" %>
+							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+								<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c1.657 0 3-1.567 3-3.5S13.657 4 12 4s-3 1.567-3 3.5S10.343 11 12 11zM6 20V8a6 6 0 0112 0v12"/></svg>
+							</div>
+							<button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400" aria-label="toggle password visibility">
+								<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+							</button>
+						</div>
+					</div>
+
+					<div>
+						<%= form.label :password_confirmation, 'Password confirmation', class: "block text-sm font-medium text-gray-700 mb-2" %>
+						<div class="relative">
+							<%= form.password_field :password_confirmation, placeholder: 'Confirm password', class: "block w-full rounded-lg border border-gray-200 bg-white py-3 pl-10 pr-12 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-300" %>
+							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+								<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c1.657 0 3-1.567 3-3.5S13.657 4 12 4s-3 1.567-3 3.5S10.343 11 12 11zM6 20V8a6 6 0 0112 0v12"/></svg>
+							</div>
+							<button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400" aria-label="toggle password visibility">
+								<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+							</button>
+						</div>
+					</div>
+
+					<div>
+						<%= form.submit 'Create User', class: "w-full inline-flex items-center justify-center rounded-lg bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 text-sm font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+					</div>
+
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
