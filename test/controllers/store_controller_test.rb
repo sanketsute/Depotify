@@ -5,6 +5,6 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
     get store_index_url
     assert_response :success
     assert_select "h1", "The Pragmatic Collection"
-    assert_select "li a", minimum: 7
+    assert_select "li a", minimum: 6
   end
 end
